@@ -13,5 +13,5 @@ test('selects Korean weekday service type',()=>{
  assert.equal(scheduleType('2026-11-16'),'WEEKDAY');
 });
 test('proxy rejects invalid line before making upstream request',async()=>{
- let status,body;await transitHandler({url:'/api/transit?station=test&line=9&direction=UP&type=WEEKDAY'},{writeHead:s=>status=s,end:b=>body=b});assert.equal(status,400);assert.equal(body,'Invalid transit query');
+ let status,body;await transitHandler({url:'/api/transit?station=test&line=9&direction=UP&type=WEEKDAY'},{setHeader:()=>{},writeHead:s=>status=s,end:b=>body=b});assert.equal(status,400);assert.equal(body,'Invalid transit query');
 });
