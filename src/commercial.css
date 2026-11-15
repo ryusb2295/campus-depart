@@ -147,3 +147,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .classes-card .section-header h2{margin:0;flex:1}
 .class-add{width:36px;height:36px;min-width:36px;display:grid;place-items:center;background:#f3f6fa;color:#347cf5;border-radius:10px}
 .class-add:hover{background:#eaf2ff}
+.location-details .location-area{display:block;color:#26354a;font-size:13px;font-weight:750;line-height:1.5}
+.location-nearest{display:flex;flex-direction:column;gap:5px;padding:13px 14px;border-radius:11px;background:#f3f7fd;color:#657b97}
+.location-nearest small{font-size:10px;color:#8295ae}
+.location-nearest strong{font-size:14px;color:#285a9c;font-weight:750}
+.location-nearest strong span{font-size:10px;margin-left:5px;color:#6d8bb3}
+.location-nearest>span{font-size:10px}
