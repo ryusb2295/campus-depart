@@ -153,3 +153,5 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .location-nearest strong{font-size:14px;color:#285a9c;font-weight:750}
 .location-nearest strong span{font-size:10px;margin-left:5px;color:#6d8bb3}
 .location-nearest>span{font-size:10px}
+.route-form .route-intro{max-width:none;min-height:0;margin-bottom:14px}
+.route-form>.route-locate{position:static;width:100%;min-height:44px;margin:0 0 18px;padding:11px 14px;font-size:11px}
