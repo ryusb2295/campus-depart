@@ -1,1 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><rect width="192" height="192" rx="44" fill="#304f46"/><rect x="51" y="34" width="90" height="114" rx="26" fill="#dce9b0"/><rect x="64" y="52" width="64" height="43" rx="8" fill="#304f46"/><circle cx="72" cy="119" r="8" fill="#304f46"/><circle cx="120" cy="119" r="8" fill="#304f46"/><path d="m70 148-14 17m66-17 14 17" stroke="#dce9b0" stroke-width="10" stroke-linecap="round"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" role="img" aria-label="나갈시간 열차 아이콘">
+  <rect width="192" height="192" rx="44" fill="#347cf5"/>
+  <rect x="45" y="27" width="102" height="126" rx="30" fill="#fff"/>
+  <rect x="58" y="43" width="76" height="57" rx="12" fill="#2365d7"/>
+  <path d="M96 45v53" stroke="#fff" stroke-width="5"/>
+  <circle cx="69" cy="126" r="8" fill="#2365d7"/>
+  <circle cx="123" cy="126" r="8" fill="#2365d7"/>
+  <path d="m68 153-17 21m73-21 17 21" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round"/>
+</svg>
