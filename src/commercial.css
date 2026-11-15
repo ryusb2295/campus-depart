@@ -1,0 +1,149 @@
+:root{color:#181b20;background:#fff;font-family:Pretendard,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+body,.app{background:#fff}
+.app{box-shadow:none;border-left:1px solid #f0f1f3;border-right:1px solid #f0f1f3}
+.topbar{background:#fff;border-bottom:1px solid #f1f2f4;padding-left:22px;padding-right:22px}
+.mobile-brand{color:#171a1e;font-size:19px;letter-spacing:-.7px}
+.mobile-brand>span:last-child{color:#171a1e}
+.brand-mark{background:#171a1e;color:#fff;border-radius:10px;width:32px;height:32px}
+.semester{color:#8b9099;font-size:11px}
+.top-actions .icon-button{background:#f5f6f7;color:#4e545d}
+.page main{padding-top:24px}
+.page-heading{margin-bottom:22px}
+.page-heading h1{color:#171a1e;font-size:26px;font-weight:760;letter-spacing:-1.1px;line-height:1.35}
+.page-heading p{font-size:11px;color:#878d96;line-height:1.6;margin-top:5px}
+.outline-action{background:#f3f4f6;color:#252b33;border-radius:12px}
+.data-banner{background:#f7f8fa;border:0;color:#737b85;border-radius:12px;font-size:10px;padding:11px 12px;margin-bottom:17px}
+.data-banner strong{color:#454b54}.data-banner button{background:none;color:#40464f;font-size:10px;font-weight:700;white-space:nowrap;padding:3px}
+.location-card,.card,.agenda-course,.schedule-overview{border:1px solid #e9ebee;border-radius:16px;box-shadow:none;background:#fff}
+.location-card{margin-bottom:23px;padding:14px 16px}
+.location-pin,.settings-icon{background:#f4f5f6;color:#343a42}
+.location-top small,.location-card>p,.location-footnote,.location-details,.location-result{color:#9097a0}
+.location-top strong{color:#2a3038;font-size:12px}
+.location-chevron{color:#9ba1aa}
+.locate-action,.location-details button{background:#f4f5f6;color:#353b43}
+.date-strip{margin-bottom:16px}.date-strip strong{color:#22272e;font-size:13px}.date-strip svg{color:#737b85}
+.date-strip input{color:#5d6570}
+.dashboard-grid,.lower-grid{gap:14px}.lower-grid{margin-top:14px}
+.departure-card{background:#fff;color:#191d23;border:1px solid #e6e8eb;border-radius:20px;padding:24px;box-shadow:0 6px 24px #1b22300a}
+.hero-decoration{display:none}
+.pill{background:#f1f4f7;border:0;color:#59636e;font-weight:650}
+.pill>span,.status-dot{background:#3478ed}
+.hero-label{color:#9098a1}
+.depart-caption{color:#69717b;font-size:12px;margin-top:27px}
+.departure-time{color:#171a1f;font-weight:720;font-size:70px;letter-spacing:-4px}
+.departure-time>span{color:#66707b;font-weight:500}
+.hero-status{color:#3569b8;font-size:11px}
+.hero-divider{background:#eef0f2;margin:24px 0 19px}
+.hero-course>div,.hero-course>p{color:#858d97}.hero-course>strong{color:#252b33;font-weight:680}
+.hero-primary{background:#20252b;color:#fff;border-radius:11px;font-weight:650}
+.hero-secondary{background:#f4f5f6;color:#414850;border:0;border-radius:11px}
+.empty-hero>svg{color:#8793a2}.empty-hero p{color:#8b939d}.empty-hero h2{color:#222830}
+.journey-card,.classes-card{padding:21px 20px}.section-header h2{color:#21262d;font-size:16px}.text-action{color:#757e88}
+.route-summary,.journey-total{border-color:#eff0f2}.route-summary{color:#30363d}.line-tag{background:#f1f3f5;color:#56616e;border:0}
+.step-icon{background:#fff;border-color:#e5e8eb;color:#717b86}.train-step .step-icon{background:#eff5ff;border-color:#dce9fc;color:#3478ed}.last .step-icon{background:#20252b;border-color:#20252b;color:#fff}
+.journey-step:not(.last):before{border-color:#d9dfe5}.journey-step strong{color:#252b32}.journey-step p{color:#929aa3}.journey-step time{color:#4d5661}
+.journey-total,.journey-total strong>span{color:#89929c}.journey-total strong{color:#303841}
+.course-row{border-color:#f0f1f2}.course-hour strong,.course-info strong{color:#2b3138}.course-hour span,.course-info small{color:#9aa1aa}.course-badge{background:#f3f4f6;color:#6c7580}.count{background:#f2f3f5;color:#68717b}
+.weekly-peek{display:none}
+.mobile-nav{background:#ffffffed;border-color:#eef0f2;box-shadow:0 -5px 24px #1b223007}.mobile-nav button{color:#9ba2ab}.mobile-nav button.selected{background:#f2f4f6;color:#20272f}
+.schedule-note,.free-day{background:#f5f6f8;color:#7d8792}.schedule-note strong,.free-day h3{color:#2f3740}.schedule-note p,.free-day p{color:#9099a2}
+.day-picker button{background:#f4f5f7;color:#929aa3}.day-picker button.chosen{background:#20252b;color:#fff;box-shadow:none}.day-picker .has-class{background:#a7b0b9}.day-picker .chosen .has-class{background:#fff}
+.day-heading h2,.agenda-content h3{color:#252b33}.agenda-course{color:#2b323a}.agenda-content{border-color:#9db6e3}.agenda-label,.agenda-content p,.agenda-content>small{color:#8893a0}.agenda-time span{color:#9ba4ad}
+.schedule-overview summary,.schedule-overview section>strong,.schedule-overview b{color:#414b56}.schedule-overview section{border-color:#eff0f2}.schedule-overview section button{border-color:#d0d9e4}
+.form-grid label{color:#555e68}.form-grid input,.form-grid select,.form-card textarea{background:#fff;border:1px solid #e0e4e8;color:#222a33;border-radius:10px}.form-card textarea{width:100%;padding:12px;resize:vertical;font:inherit;font-size:14px;margin:12px 0}.form-card>h2:not(:first-child){margin-top:24px}.form-card>p{font-size:12px;color:#79828c;line-height:1.7}
+.form-note,.subtle-pill{background:#f6f7f9;color:#77818d}.settings-card p,.muted{color:#828b96}.import-button{color:#59636e}
+.modal{border-color:#e9ebee;box-shadow:0 -10px 36px #18202b16}.modal:before{background:#dce0e4}.modal-overlay{background:#171d2680}.toast{background:#242a31;color:#fff}
+footer{display:none}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #4386eb;outline-offset:2px}
+@media(max-width:359px){.departure-time{font-size:62px}.page-heading h1{font-size:23px}}
+
+/* Mobility app direction: bright blue, clear hierarchy, and restrained surfaces. */
+:root{background:#f4f7fb;color:#101827}
+body{background:#f4f7fb}.app{background:#fff;border:0}
+.topbar{min-height:72px;border:0;background:#fff;padding-bottom:11px}
+.mobile-brand{font-size:20px;font-weight:800}.mobile-brand>span:last-child{color:#347cf5}
+.brand-mark{background:#347cf5;box-shadow:0 5px 12px #347cf52e}
+.top-actions .icon-button{background:#f2f6fc;color:#4d607a}
+.page main{padding:20px 20px calc(105px + env(safe-area-inset-bottom))}
+.page-heading h1{font-size:27px;letter-spacing:-1.25px}.page-heading p{font-size:12px;line-height:1.55;color:#8591a1}
+.outline-action{background:#edf4ff;color:#246cdb;width:44px;height:44px}
+.data-banner{background:#f7f9fc;color:#6f7d8e;border-radius:12px;padding:12px 13px;margin-bottom:20px;line-height:1.55}
+.data-banner svg{color:#8b9bb1}.data-banner button{color:#2874e6}
+.location-card{background:#f8faff;border:0;border-radius:14px;padding:14px 16px}
+.location-pin{background:#eaf2ff;color:#347cf5}.location-top strong{color:#273b55}
+.date-strip{padding:2px 0 5px}.date-strip strong{font-size:14px}.date-strip input{font-size:11px;color:#65748a}
+.departure-card{background:linear-gradient(145deg,#408cff 0%,#2670ec 100%);border:0;color:#fff;border-radius:24px;box-shadow:0 14px 28px #2f7bea2b;padding:25px}
+.pill{background:#ffffff2d;color:#fff}.pill>span{background:#fff}.hero-label{color:#d9e8ff}
+.depart-caption{color:#e0ebff;margin-top:27px}.departure-time{color:#fff;font-size:71px;font-weight:750}.departure-time>span{color:#e9f2ff}
+.hero-status{color:#fff}.status-dot{background:#fff}.hero-divider{background:#ffffff3a}
+.hero-course>div,.hero-course>p{color:#e1edff}.hero-course>strong{color:#fff}
+.hero-primary{background:#fff;color:#2469d4}.hero-secondary{background:#ffffff26;color:#fff;border:1px solid #ffffff5c}
+.empty-hero>svg,.empty-hero h2,.empty-hero p{color:#fff}
+.journey-card,.classes-card{border:1px solid #ebeff5;border-radius:19px}
+.section-header h2{font-size:16px;font-weight:750}.text-action{color:#3976d2}
+.line-tag{background:#eaf2ff;color:#2b73df}.train-step .step-icon{background:#eaf2ff;color:#3178e5}.last .step-icon{background:#347cf5;border-color:#347cf5}
+.journey-step time{font-weight:650}.journey-total strong{color:#2670df}
+.course-bar,.agenda-content{border-color:#78aaff}.course-bar{background:#78aaff}.color-1{background:#7e9ed4}.color-2{background:#b7a1d6}
+.course-badge{background:#eff5ff;color:#3573cf}
+.schedule-note{background:#edf4ff;border-radius:18px;padding:18px;margin-bottom:28px;color:#397be4;min-height:76px}
+.schedule-note>svg{width:22px;height:22px}.schedule-note strong{color:#193c75;font-size:13px}.schedule-note p{color:#7892b5;font-size:10px;margin:5px 0 0}
+.schedule-note-count{margin-left:auto;background:#fff;color:#3475d8;border-radius:99px;padding:6px 9px;font-size:10px;font-weight:750}
+.day-picker{gap:7px;margin-bottom:29px}.day-picker button{background:#f4f7fb;color:#8b99ab;border-radius:15px;min-height:61px;font-size:13px}.day-picker button.chosen{background:#347cf5;color:#fff;box-shadow:0 7px 17px #347cf530}.day-picker .has-class{background:#a9b6c8}.day-picker .chosen .has-class{background:#fff}
+.day-heading{margin-bottom:18px}.day-heading h2{font-size:17px;font-weight:750}.day-heading h2>span{color:#7f91a8;font-size:11px}.day-heading .text-action{color:#397be4;font-size:11px}
+.agenda-list{gap:12px}.agenda-course{border:1px solid #ebeff5;border-radius:18px;min-height:128px;padding:19px 16px;gap:16px;box-shadow:0 5px 15px #1f4c8910}
+.agenda-time{min-width:43px;gap:8px}.agenda-time strong{font-size:14px;color:#17263e}.agenda-time span{color:#9aa8b9}
+.agenda-content{border-left-width:3px;padding-left:15px}.agenda-label{color:#4e88d9;font-size:10px;font-weight:700}.agenda-content h3{font-size:15px;font-weight:750;color:#16283e}.agenda-content p,.agenda-content>small{color:#8d9bae}.agenda-course>svg{color:#9ba9bb}
+.agenda-1 .agenda-content{border-color:#7f9cd4}.agenda-1 .agenda-label{color:#6685c4}.agenda-2 .agenda-content{border-color:#a8b8db}
+.schedule-overview{border-color:#e9eef5}.schedule-overview summary{color:#3779df;font-weight:700}
+.mobile-nav{background:#fff;border-top:1px solid #ecf0f5}.mobile-nav button{color:#98a5b5}.mobile-nav button.selected{background:#edf4ff;color:#347cf5}
+.form-card,.settings-card{border-color:#e9eef5}.form-grid input:focus,.form-grid select:focus{border-color:#347cf5}.form-note,.subtle-pill{background:#f5f8fd;color:#74869b}.toast{background:#193c75}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline-color:#347cf5}
+.route-form{padding:25px 21px 23px}.route-form .section-header{margin-bottom:8px}.route-form .section-header h2{font-size:18px}
+.route-intro{font-size:12px;color:#8290a1;line-height:1.6;margin:0 0 24px}
+.route-quick-fields{display:grid;gap:18px}.route-quick-fields label{display:flex;flex-direction:column;gap:9px;color:#4c5a6b;font-size:12px;font-weight:650}
+.route-quick-fields input{width:100%;height:56px;padding:0 16px;border:1px solid #dce5ef;border-radius:13px;background:#fff;color:#192a40;font-size:17px;font-weight:700;outline:none}
+.route-quick-fields input:focus{border-color:#347cf5;box-shadow:0 0 0 3px #347cf51a}
+.route-current{margin:18px 0 20px;padding:12px 14px;border-radius:11px;background:#f3f7fd;color:#58708c;font-size:11px}
+.route-advanced{border-top:1px solid #edf1f6;margin-bottom:23px}.route-advanced summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;min-height:58px;color:#2c6dce;font-size:12px;font-weight:750}.route-advanced summary::-webkit-details-marker{display:none}.route-advanced summary:after{content:'⌄';font-size:18px;margin-left:10px}.route-advanced[open] summary:after{transform:rotate(180deg)}.route-advanced summary span{font-size:10px;color:#9aa6b4;font-weight:500;margin-left:auto}
+.route-advanced .form-grid{padding:6px 0 10px}.route-form form>.ax-button,.route-form form>button{width:100%}
+.station-picker{position:relative}.station-picker label{position:relative}.station-picker input{padding-right:68px}
+.station-picked{position:absolute;right:14px;bottom:17px;background:#edf4ff;color:#2d75dd;padding:5px 7px;border-radius:6px;font-size:10px;font-weight:750;pointer-events:none}
+.route-between{height:12px;margin:-13px 0 -10px 17px;color:#9baec7;transform:rotate(90deg);display:flex;align-items:center}
+.station-options{position:absolute;top:100%;left:0;right:0;z-index:9;margin-top:6px;background:#fff;border:1px solid #dce7f5;border-radius:14px;box-shadow:0 16px 36px #17345b24;overflow:hidden}
+.station-filter{display:flex;gap:4px;padding:10px 10px 7px;border-bottom:1px solid #f0f3f7}.station-filter button{background:#f3f6fa;color:#78879a;padding:7px 9px;border-radius:7px;font-size:10px;font-weight:650}.station-filter button.active{background:#347cf5;color:#fff}
+.station-results{max-height:278px;overflow:auto;overscroll-behavior:contain}.station-results>button{width:100%;min-height:45px;display:flex;align-items:center;gap:10px;padding:9px 13px;background:#fff;color:#27364b;text-align:left;font-size:12px;border-bottom:1px solid #f2f4f7}.station-results>button:hover,.station-results>button[aria-selected=true]{background:#f3f8ff}.station-results>button svg{color:#6799e5}.station-results>button span{flex:1}.station-results>button small{color:#2e75dc;background:#edf4ff;border-radius:5px;padding:4px 6px;white-space:nowrap;font-size:10px}.station-results>p{padding:10px 14px;color:#8d9aad;font-size:11px}
+.station-all{width:100%;display:flex;align-items:center;justify-content:center;gap:6px;background:#f8faff;color:#397be4;font-size:11px;font-weight:700;padding:10px}
+.route-warning,.station-error{background:#fff6f1;color:#a7592c;border-radius:11px;padding:12px 14px;font-size:11px;line-height:1.6;margin:18px 0 20px}.route-loading{font-size:11px;color:#8190a3}
+.route-field-hint{display:block;font-size:10px;color:#91a0b1;font-weight:400;line-height:1.5;margin-top:-3px}
+.route-auto-plan{display:flex;flex-direction:column;gap:7px;margin:19px 0 23px;padding:15px 16px;border-radius:13px;background:#f3f7fd;color:#3f5f88}.route-auto-plan strong{font-size:12px;color:#2e67bd}.route-auto-plan span{font-size:10px;line-height:1.6;color:#72859d}
+.route-buffer{border-top:1px solid #edf1f6;padding-top:20px;margin-bottom:12px}.route-buffer>span{display:block;font-size:12px;font-weight:700;color:#43556d;margin-bottom:11px}.route-buffer>div{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.route-buffer button{background:#f3f6fa;color:#718198;border:1px solid #e5ebf3;border-radius:10px;min-height:42px;font-size:11px;font-weight:650;padding:7px}.route-buffer button.selected{background:#edf4ff;border-color:#a9cafa;color:#2f72d7}
+.route-estimate-note{font-size:10px;color:#97a4b4;line-height:1.6;margin:0 0 22px}
+.route-between{transform:none;margin:-5px 0 -9px 17px}.route-between svg{transform:rotate(90deg)}
+.route-form>button{width:100%;min-height:48px}
+.route-estimate-note{margin-bottom:10px}
+.route-form{position:relative}.route-form .route-intro{max-width:190px;min-height:38px;margin-bottom:13px}
+.route-locate{position:absolute;top:19px;right:20px;display:flex;align-items:center;justify-content:center;gap:5px;min-height:36px;padding:7px 10px;border-radius:10px;background:#edf4ff;color:#2e71d6;font-size:10px;font-weight:750}.route-locate:disabled{opacity:.55}
+.route-location-status{margin:-4px 0 15px;padding:10px 12px;border-radius:10px;background:#f4f8ff;color:#5d7391;font-size:10px;line-height:1.6}
+.schedule-overview{padding:0 12px;overflow:hidden}
+.schedule-overview summary{min-height:52px;padding:17px 2px;list-style:none}
+.schedule-overview summary::-webkit-details-marker{display:none}
+.schedule-overview summary::after{content:'⌄';float:right;font-size:16px;line-height:12px;color:#778ba6}
+.schedule-overview[open] summary::after{content:'⌃'}
+.week-grid{display:grid;width:100%;border-top:1px solid #e8edf4;font-variant-numeric:tabular-nums}
+.week-corner,.week-day-label{height:35px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #e8edf4;font-size:11px;font-weight:750;color:#50617a}
+.week-times{position:relative;border-right:1px solid #edf0f4}
+.week-times span{position:absolute;left:0;transform:translateY(-6px);font-size:9px;color:#9aa7b6}
+.week-times span:first-child{transform:translateY(4px)}
+.week-day-column{position:relative;min-width:0;border-right:1px solid #edf0f4;background-image:linear-gradient(to bottom,#e9edf3 1px,transparent 1px);background-repeat:repeat-y}
+.week-day-column:last-child{border-right:0}
+.schedule-overview .week-course{position:absolute;left:2px;width:calc(100% - 4px);margin:0;min-height:0;padding:5px 3px;display:flex;flex-direction:column;align-items:flex-start;gap:3px;overflow:hidden;border:0;border-left:2px solid #5691ee;border-radius:4px;background:#eaf2ff;text-align:left;color:#285a9c}
+.schedule-overview .week-course:nth-child(3n+2){background:#f0edff;border-left-color:#9a83db;color:#64539e}
+.schedule-overview .week-course:nth-child(3n){background:#e8f5f0;border-left-color:#61ab8f;color:#357963}
+.week-course span{font-size:8px;font-weight:700;line-height:1.1}
+.schedule-overview .week-course b{font-size:9px;line-height:1.25;color:inherit;word-break:break-all;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+.week-course small{font-size:8px;line-height:1.1;color:inherit;opacity:.75;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.week-grid-hint{font-size:10px;color:#98a4b3;margin:10px 0 13px}
+.classes-card .section-header{gap:10px;align-items:center}
+.classes-card .section-header h2{margin:0;flex:1}
+.class-add{width:36px;height:36px;min-width:36px;display:grid;place-items:center;background:#f3f6fa;color:#347cf5;border-radius:10px}
+.class-add:hover{background:#eaf2ff}

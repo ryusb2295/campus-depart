@@ -10,3 +10,9 @@ export function parseSchedule(xml) {
  if (!result.length) throw new Error('조회된 열차시각이 없어요. 역 이름과 방향을 확인해 주세요.');
  return result;
 }
+export function parseManualTimes(value) {
+ const parts=value.split(/[\s,;]+/).filter(Boolean);
+ if (!parts.length) return [];
+ if (parts.some(p=>!/^([01]\d|2[0-3]):[0-5]\d$/.test(p))) throw new Error('열차시각은 08:30처럼 입력해 주세요.');
+ return [...new Set(parts.map(p=>Number(p.slice(0,2))*60+Number(p.slice(3))))].sort((a,b)=>a-b);
+}
