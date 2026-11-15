@@ -1,4 +1,4 @@
-import {useEffect,useState} from 'react';
+import {useEffect,useRef,useState} from 'react';
 import {ImagePlus,Trash2,X} from 'lucide-react';
 import {recognizeSchedulePhoto} from './etta-ocr';
 import type {DraftCourse} from './etta-ocr';
@@ -13,14 +13,18 @@ export function PhotoImport({onClose,onImport}:{onClose:()=>void;onImport:(cours
  const [busy,setBusy]=useState(false);
  const [message,setMessage]=useState('');
  const [replace,setReplace]=useState(true);
+ const requestId=useRef(0);
+ useEffect(()=>()=>{requestId.current++},[]);
  useEffect(()=>()=>{if(imageUrl)URL.revokeObjectURL(imageUrl)},[imageUrl]);
  async function read(file:File){
+  const currentId=++requestId.current;
+  setBusy(false);
   if(!file.type.startsWith('image/')){setMessage('이미지 파일을 선택해 주세요.');return}
   if(file.size>15*1024*1024){setMessage('15MB 이하 사진을 선택해 주세요.');return}
   setImageUrl(URL.createObjectURL(file));setDrafts([]);setBusy(true);setMessage('사진에서 시간표를 찾는 중…');
-  try{const courses=await recognizeSchedulePhoto(file,setMessage);setDrafts(courses);setMessage(`${courses.length}개 수업을 찾았어요. 이름과 시간을 확인해 주세요.`)}
-  catch(error){setMessage(error instanceof Error?error.message:'사진을 읽지 못했어요. 다른 캡처로 다시 시도해 주세요.')}
-  finally{setBusy(false)}
+  try{const courses=await recognizeSchedulePhoto(file,text=>{if(requestId.current===currentId)setMessage(text)});if(requestId.current!==currentId)return;setDrafts(courses);setMessage(`${courses.length}개 수업을 찾았어요. 이름과 시간을 확인해 주세요.`)}
+  catch(error){if(requestId.current===currentId)setMessage(error instanceof Error?error.message:'사진을 읽지 못했어요. 다른 캡처로 다시 시도해 주세요.')}
+  finally{if(requestId.current===currentId)setBusy(false)}
  }
  function update(id:string,key:keyof DraftCourse,value:string|number){setDrafts(items=>items.map(item=>item.id===id?{...item,[key]:value}:item))}
  function save(){
