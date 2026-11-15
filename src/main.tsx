@@ -14,6 +14,7 @@ import {LocationCard} from './LocationCard';
 import {WeekSchedule} from './WeekSchedule';
 import {RouteForm} from './RouteForm';
 import {routeFromPoint} from './location-route.mjs';
+import {snapshotTimes} from './timetable-snapshot.mjs';
 import stationData from './daegu-stations.json';
 type Course={id:string;day:number;name:string;start:string;end:string;room:string};
 type RouteConfig={from:string;to:string;line:string;direction?:string;serviceType?:string;homeWalk:number;campusWalk:number;platform:number;buffer:number;ride:number;school:string;walkOnly?:boolean;originPointApplied?:boolean};
@@ -27,7 +28,34 @@ function App(){
  const [date,setDate]=useState(()=>{const s=new Date().toLocaleDateString('sv-SE',{timeZone:'Asia/Seoul'});const d=new Date(s+'T12:00:00');return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`});
  const [cancelled,setCancelled]=useState<string[]>(()=>load('ng-cancelled',[]));const [manualTimes,setManualTimes]=useState<string>(()=>load('ng-manual-trains',''));const [notifyEnabled,setNotifyEnabled]=useState<boolean>(()=>load('ng-notify-enabled',false));const [skip,setSkip]=useState(0);const [modal,setModal]=useState(false);const [editing,setEditing]=useState<Course|null>(null);const [toast,setToast]=useState('');const [install,setInstall]=useState<any>(null);
  const selected=new Date(date+'T12:00:00');const day=selected.getDay();const list=courses.filter(c=>c.day===day).sort((a,b)=>minutes(a.start)-minutes(b.start));const active=list.filter(c=>!cancelled.includes(`${date}:${c.id}`));const first=active[0];const [departures,setDepartures]=useState<number[]>([]);const [apiStatus,setApiStatus]=useState('조회 중');const [retry,setRetry]=useState(0);const [apiKey,setApiKey]=useState('');const requestKey=JSON.stringify([route.from,route.to,route.line,route.direction,date,route.serviceType]);let entered:number[]=[];try{entered=parseManualTimes(manualTimes)}catch{}const trainTimes=entered.length?entered:apiKey===requestKey?departures:[];const trains=trainTimes.map(departure=>({departure,arrival:departure+route.ride}));const destinationStation=stationData.stations.find(x=>x.name===route.to);const routeUnsupported=!route.walkOnly&&!!destinationStation&&destinationStation.line!==route.line;const trip=routeUnsupported?null:planTrip(first,route,trains,skip);const [now,setNow]=useState(Date.now());
- useEffect(()=>{const controller=new AbortController();if(route.walkOnly||routeUnsupported){setApiKey('');setDepartures([]);setApiStatus(route.walkOnly?'\uC5F4\uCC28 \uC774\uC6A9 \uC5C6\uC74C':'\uD658\uC2B9 \uACBD\uB85C \uACC4\uC0B0\uC774 \uD544\uC694\uD574\uC694.');return()=>controller.abort()}setApiStatus('공식 열차시각표 조회 중');setApiKey('');setDepartures([]);const params=new URLSearchParams({station:route.from.trim(),destination:route.to.trim(),line:route.line.charAt(0),direction:route.direction||'DOWN',type:route.serviceType||scheduleType(date)});fetch((import.meta.env.VITE_TRANSIT_API_URL || '/api/transit')+'?'+params,{signal:controller.signal}).then(async r=>{const contentType=r.headers.get('content-type')||'';if(contentType.includes('text/html'))throw Error('\uC5F4\uCC28 \uC870\uD68C \uC11C\uBC84\uAC00 \uC5F0\uACB0\uB418\uC9C0 \uC54A\uC558\uC5B4\uC694.');if(!r.ok)throw Error((await r.text()).slice(0,180)||'열차시각표 조회에 실패했어요.');return r.text()}).then(xml=>{setDepartures(parseSchedule(xml));setApiKey(requestKey);setApiStatus('공식 출발시각 · 도착은 입력한 이동시간으로 추정')}).catch(e=>{if(e.name!=='AbortError')setApiStatus(e.message||'시간표 조회 실패')});return()=>controller.abort()},[requestKey,retry,route.walkOnly,routeUnsupported]);
+ useEffect(()=>{
+  const controller=new AbortController();
+  setApiKey('');setDepartures([]);
+  if(route.walkOnly||routeUnsupported){setApiStatus(route.walkOnly?'열차 이용 없음':'환승 경로 계산이 필요해요.');return()=>controller.abort()}
+  const type=route.serviceType||scheduleType(date);
+  async function useSnapshot(){
+   const response=await fetch(import.meta.env.BASE_URL+'timetable-snapshot.json',{signal:controller.signal});
+   if(!response.ok)throw Error('저장된 시간표를 불러오지 못했어요.');
+   const snapshot=await response.json();
+   const times=snapshotTimes(snapshot,route,type,stationData.stations);
+   if(!times.length)throw Error('이 역의 저장된 열차시각이 없어요.');
+   if(controller.signal.aborted)return;
+   setDepartures(times);setApiKey(requestKey);
+   setApiStatus(`공식 시간표 사본 (${snapshot.generatedAt?.slice(0,10)||'날짜 미상'} 기준) · 실시간 운행정보 아님`);
+  }
+  if(import.meta.env.BASE_URL!=='/'&&!import.meta.env.VITE_TRANSIT_API_URL){
+   setApiStatus('저장된 열차 시간표 조회 중');
+   useSnapshot().catch(error=>{if(!controller.signal.aborted)setApiStatus(error.message)});
+   return()=>controller.abort();
+  }
+  setApiStatus('공식 열차시각표 조회 중');
+  const params=new URLSearchParams({station:route.from.trim(),destination:route.to.trim(),line:route.line.charAt(0),direction:route.direction||'DOWN',type});
+  fetch((import.meta.env.VITE_TRANSIT_API_URL||'/api/transit')+'?'+params,{signal:controller.signal})
+   .then(async response=>{const contentType=response.headers.get('content-type')||'';if(contentType.includes('text/html'))throw Error('열차 조회 서버가 연결되지 않았어요.');if(!response.ok)throw Error((await response.text()).slice(0,180)||'열차시각표 조회 실패');return response.text()})
+   .then(xml=>{if(controller.signal.aborted)return;setDepartures(parseSchedule(xml));setApiKey(requestKey);setApiStatus('공식 출발시각 · 도착은 예상 이동시간으로 추정')})
+   .catch(async error=>{if(controller.signal.aborted)return;try{await useSnapshot()}catch{if(!controller.signal.aborted)setApiStatus(error.message||'시간표 조회 실패')}});
+  return()=>controller.abort();
+ },[requestKey,retry,route.walkOnly,routeUnsupported]);
  useEffect(()=>{const id=setInterval(()=>setNow(Date.now()),30000);return()=>clearInterval(id)},[]);
  useEffect(()=>{try{localStorage.setItem('ng-manual-trains',JSON.stringify(manualTimes));localStorage.setItem('ng-notify-enabled',JSON.stringify(notifyEnabled))}catch{}},[manualTimes,notifyEnabled]);
  useEffect(()=>{if(!notifyEnabled||!trip||date!==new Date().toLocaleDateString('sv-SE',{timeZone:'Asia/Seoul'})||!('Notification' in window)||Notification.permission!=='granted')return;const [h,m]=clock(trip.leave).split(':').map(Number);const target=new Date(`${date}T${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:00+09:00`);const delay=target.getTime()-Date.now();if(delay<0||delay>86400000)return;const id=setTimeout(()=>{new Notification('나갈시간',{body:`${first?.name||'수업'} 등교를 위해 출발할 시간이에요.`})},delay);return()=>clearTimeout(id)},[notifyEnabled,trip?.leave,date,first?.name,now]);
