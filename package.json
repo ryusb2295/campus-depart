@@ -10,18 +10,19 @@
     "start": "node transit-server.mjs"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
     "@astryxdesign/core": "0.4.1",
     "@astryxdesign/theme-neutral": "0.4.1",
     "@stylexjs/stylex": "*",
-    "lucide-react": "^0.468.0"
+    "lucide-react": "^0.468.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tesseract.js": "^7.0.0"
   },
   "devDependencies": {
-    "typescript": "~5.8.3",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^4.4.0",
+    "typescript": "~5.8.3",
     "vite": "^6.1.0",
     "vite-plugin-pwa": "^1.0.0"
   }
