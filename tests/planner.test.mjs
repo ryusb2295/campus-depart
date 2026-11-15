@@ -4,3 +4,4 @@ test('selects latest arrival before walking and buffer deadline',()=>{const p=pl
 test('missing the train uses next departure and reports actual lateness',()=>{const p=planTrip(course,route,trains,3);assert.equal(p.departure,498);assert.equal(p.late,3)});
 test('no class or no matching train is handled',()=>{assert.equal(planTrip(null,route,trains),null);assert.equal(planTrip({start:'07:00'},route,trains),null);assert.equal(planTrip(course,route,trains,99),null)});
 test('time conversion preserves midnight boundaries',()=>{assert.equal(minutes('09:30'),570);assert.equal(clock(1445),'00:05');assert.equal(clock(-1),'23:59')});
+test('near-campus origin calculates a walking departure without trains',()=>{const p=planTrip({start:'10:30'},{homeWalk:12,campusWalk:15,buffer:10,walkOnly:true},[]);assert.equal(p.leave,593);assert.equal(p.atClass,620);assert.equal(p.walkOnly,true)});

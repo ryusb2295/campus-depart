@@ -4,16 +4,16 @@ import {distanceMeters,estimateWalkMinutes} from './geo.mjs';
 import stationData from './daegu-stations.json';
 
 type Point={lat:number;lon:number;accuracy:number;time:number};
-type Nearby={name:string;line:string;meters:number};
+export type Nearby={id:string;name:string;line:string;order:number;meters:number};
 function readHome():Point|null{try{const p=JSON.parse(localStorage.getItem('ng-origin-point')||'null');return p&&Number.isFinite(p.lat)&&Number.isFinite(p.lon)?p:null}catch{return null}}
 function nearestStation(point:Point):Nearby|null{
- const nearest=stationData.stations.map(station=>({name:station.name,line:station.line,meters:distanceMeters(point,station)})).sort((a,b)=>a.meters-b.meters)[0];
+ const nearest=stationData.stations.map(station=>({...station,meters:distanceMeters(point,station)})).sort((a,b)=>a.meters-b.meters)[0];
  return nearest||null;
 }
 function localityLabel(data:{principalSubdivision?:string;city?:string;locality?:string}){
  return [...new Set([data.principalSubdivision,data.city,data.locality].filter(Boolean))].join(' ');
 }
-export function LocationCard({station,onEdit}:{station:string;onEdit:()=>void}){
+export function LocationCard({station,onEdit,onApply}:{station:string;onEdit:()=>void;onApply:(point:Point)=>void}){
  const [point,setPoint]=useState<Point|null>(null);
  const [home,setHome]=useState<Point|null>(readHome);
  const [nearby,setNearby]=useState<Nearby|null>(null);
@@ -44,7 +44,7 @@ export function LocationCard({station,onEdit}:{station:string;onEdit:()=>void}){
   <p>현재 위치 주변과 가까운 역을 확인해요.</p>
   <div className="location-actions"><button disabled={busy} className="locate-action" onClick={locate}><LocateFixed size={16} className={busy?'spin':''}/>{busy?'위치 확인 중':'현재 위치 확인'}</button><button className="text-action" onClick={onEdit}>경로 설정</button></div>
   {status&&<div role="status" className="location-result">{status}</div>}
-  {point&&<div className="location-details"><strong className="location-area">{area||'주변 지역을 찾는 중…'}</strong>{nearby&&<div className="location-nearest"><small>가장 가까운 대구 지하철역</small><strong>{nearby.name}역 <span>{nearby.line}</span></strong><span>직선거리 약 {Math.round(nearby.meters)}m · 예상 도보 {estimateWalkMinutes(nearby.meters)}분</span></div>}<span>위치 오차 약 {Math.round(point.accuracy)}m · {new Date(point.time).toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})} 확인</span>{gap!==null&&<span>{gap>300?`저장한 출발지에서 약 ${(gap/1000).toFixed(1)}km 떨어져 있어요.`:'저장한 출발지 근처예요.'}</span>}<button disabled={point.accuracy>150} onClick={()=>{try{localStorage.setItem('ng-origin-point',JSON.stringify(point));setHome(point);setStatus('평소 출발지를 이 기기에 저장했어요.')}catch{setStatus('출발지를 저장하지 못했어요.')}}}><Check size={14}/> 이 위치를 평소 출발지로 저장</button></div>}
+  {point&&<div className="location-details"><strong className="location-area">{area||'주변 지역을 찾는 중…'}</strong>{nearby&&<div className="location-nearest"><small>가장 가까운 대구 지하철역</small><strong>{nearby.name}역 <span>{nearby.line}</span></strong><span>직선거리 약 {Math.round(nearby.meters)}m · 예상 도보 {estimateWalkMinutes(nearby.meters)}분</span></div>}<span>위치 오차 약 {Math.round(point.accuracy)}m · {new Date(point.time).toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})} 확인</span>{gap!==null&&<span>{gap>300?`저장한 출발지에서 약 ${(gap/1000).toFixed(1)}km 떨어져 있어요.`:'저장한 출발지 근처예요.'}</span>}<button disabled={point.accuracy>150||!nearby} onClick={()=>{if(!nearby)return;try{localStorage.setItem('ng-origin-point',JSON.stringify(point));setHome(point);onApply(point);setStatus('현재 위치를 출발지와 출발시간 계산에 적용했어요.')}catch{setStatus('출발지를 저장하지 못했어요.')}}}><Check size={14}/> 이 위치를 출발지로 적용</button></div>}
   {home&&<button className="forget-location" onClick={()=>{try{localStorage.removeItem('ng-origin-point');setHome(null);setStatus('저장한 출발지를 삭제했어요.')}catch{setStatus('저장한 출발지를 삭제하지 못했어요.')}}}>저장한 출발지 삭제</button>}
   <small className="location-footnote">지역 이름은 주소 조회 서비스로 확인하며, 도로명주소는 제공하지 않아요. 도보시간은 직선거리 추정치예요.</small>
  </details>

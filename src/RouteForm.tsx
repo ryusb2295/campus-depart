@@ -5,7 +5,7 @@ import {estimateRideMinutes} from './route-estimate.mjs';
 import {distanceMeters,estimateWalkMinutes} from './geo.mjs';
 import stationData from './daegu-stations.json';
 
-export type RouteConfig={from:string;to:string;line:string;direction?:string;serviceType?:string;homeWalk:number;campusWalk:number;platform:number;buffer:number;ride:number;school:string};
+export type RouteConfig={from:string;to:string;line:string;direction?:string;serviceType?:string;homeWalk:number;campusWalk:number;platform:number;buffer:number;ride:number;school:string;walkOnly?:boolean;originPointApplied?:boolean};
 type Station={id:string;name:string;line:string;order:number;lat:number;lon:number};
 const clean=(name:string)=>name.replace(/\([^)]*\)/g,'').replace(/역$/,'').trim();
 const findStation=(stations:Station[],name:string,line:string)=>stations.find(s=>s.line===line&&clean(s.name)===clean(name));
@@ -57,6 +57,6 @@ export function RouteForm({route,onSave}:{route:RouteConfig;onSave:(route:RouteC
   {sameLine&&!sameStation?<div className="route-auto-plan"><strong>{fromStation.line} · {directionName(fromStation.line,direction)}</strong><span>열차 약 {ride}분 · 역까지 걷기 약 {homeWalk}분 · 강의실까지 {route.campusWalk}분</span></div>:<p className="route-warning" role="status">{sameStation?'출발역과 도착역이 같아요.':fromStation&&toStation?'서로 다른 호선이에요. 환승 경로 계산은 아직 지원하지 않아요.':'목록에서 출발역과 도착역을 선택해 주세요.'}</p>}
   <div className="route-buffer"><span>출발 여유</span><div>{[{value:5,label:'딱 맞게'},{value:10,label:'보통'},{value:20,label:'여유롭게'}].map(option=><button type="button" key={option.value} className={buffer===option.value?'selected':''} onClick={()=>setBuffer(option.value)}>{option.label}</button>)}</div></div>
   <p className="route-estimate-note">위치 기반 도보시간은 직선거리 추정치예요. 강의실까지의 도보시간과 열차 지연은 자동 반영되지 않아요.</p>
-  <Button label="경로 저장" variant="primary" isDisabled={!sameLine||!!sameStation} onClick={()=>{if(!sameLine||sameStation)return;onSave({...route,from:fromStation.name,to:toStation.name,line:fromStation.line,direction,homeWalk,buffer,ride})}}/>
+  <Button label="경로 저장" variant="primary" isDisabled={!sameLine||!!sameStation} onClick={()=>{if(!sameLine||sameStation)return;onSave({...route,from:fromStation.name,to:toStation.name,line:fromStation.line,direction,homeWalk,buffer,ride,walkOnly:false,originPointApplied:true})}}/>
  </section>
 }
